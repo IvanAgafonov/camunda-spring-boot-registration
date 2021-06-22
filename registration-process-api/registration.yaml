@@ -1,0 +1,102 @@
+openapi: 3.0.0
+info:
+  title: registration
+  version: '1.0'
+servers:
+  - url: 'http://localhost:8081'
+paths:
+  /registration:
+    post:
+      summary: start user register
+      tags:
+        - registration
+      responses:
+        '201':
+          description: Created
+          headers:
+            location:
+              schema:
+                type: string
+              description: location request
+        '500':
+          description: Internal Server Error
+      operationId: add-request
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Request'
+      parameters:
+        - schema:
+            type: integer
+          in: header
+          name: clientId
+          description: random number
+      description: ''
+    get:
+      summary: ''
+      operationId: get-all-requests
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Record'
+      tags:
+        - registration
+  '/request/{clientId}':
+    parameters:
+      - schema:
+          type: integer
+        name: clientId
+        in: path
+        required: true
+    delete:
+      summary: ''
+      operationId: cancel-request
+      responses:
+        '200':
+          description: OK
+        '404':
+          description: Not Found
+      parameters: []
+      tags:
+        - registration
+components:
+  schemas:
+    Request:
+      title: Request
+      type: object
+      properties:
+        nickname:
+          type: string
+          minLength: 1
+        email:
+          type: string
+          minLength: 1
+          format: email
+        birthday:
+          type: string
+          format: date
+      required:
+        - nickname
+        - email
+    Record:
+      title: RecordInfo
+      type: object
+      properties:
+        id:
+          type: integer
+        clientId:
+          type: integer
+        status:
+          type: string
+          enum:
+            - DECLINE
+            - APPROVE
+            - EXPIRED
+            - USER_CANCEL
+            - INVALID

@@ -1,0 +1,51 @@
+package org.registration.entity;
+
+import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
+import org.registration.model.RequestInfo;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
+public class RecordInfo {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+
+    private int clientId;
+
+    private RequestInfo.StatusEnum status;
+
+    public RecordInfo() {
+    }
+
+    public RecordInfo(int id, int clientId, RequestInfo.StatusEnum status) {
+        this.id = id;
+        this.clientId = clientId;
+        this.status = status;
+    }
+
+    @Override
+    public String toString() {
+        return "RecordInfo{" +
+                "id=" + id +
+                ", clientId=" + clientId +
+                ", status=" + status +
+                '}';
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public Integer getClientId() {
+        return clientId;
+    }
+
+    public RequestInfo.StatusEnum getStatus() {
+        return status;
+    }
+}

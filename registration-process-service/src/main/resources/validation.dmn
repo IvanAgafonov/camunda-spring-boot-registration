@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="https://www.omg.org/spec/DMN/20191111/MODEL/" xmlns:dmndi="https://www.omg.org/spec/DMN/20191111/DMNDI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" id="dmn" name="validation" namespace="http://camunda.org/schema/1.0/dmn" exporter="Camunda Modeler" exporterVersion="4.8.1">
+  <decision id="validation" name="Validation">
+    <decisionTable id="DecisionTable_06lmgdu" hitPolicy="FIRST">
+      <input id="Input_1" label="nickname length">
+        <inputExpression id="InputExpression_1" typeRef="integer">
+          <text>string length(nickname)</text>
+        </inputExpression>
+      </input>
+      <input id="InputClause_16avmsa" label="email length">
+        <inputExpression id="LiteralExpression_0lb1n2c" typeRef="integer">
+          <text>string length(email)</text>
+        </inputExpression>
+      </input>
+      <input id="InputClause_0aq9czs" label="date until 16 year">
+        <inputExpression id="LiteralExpression_1yhbe98" typeRef="date" expressionLanguage="juel">
+          <text>dateTime().minusYears(16).toDate()</text>
+        </inputExpression>
+      </input>
+      <output id="Output_1" label="valid" name="valid" typeRef="boolean" />
+      <rule id="DecisionRule_1yby4ih">
+        <inputEntry id="UnaryTests_0fxsyod">
+          <text>&gt; 0</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_11nld4t">
+          <text>&gt; 0</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1j9l4em">
+          <text>&gt; birthday</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1ugz7d4">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0f4aqdc">
+        <inputEntry id="UnaryTests_1crla0h">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0zv4dvu">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0o4kzrc">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1wpm4ix">
+          <text>false</text>
+        </outputEntry>
+      </rule>
+    </decisionTable>
+  </decision>
+  <dmndi:DMNDI>
+    <dmndi:DMNDiagram>
+      <dmndi:DMNShape dmnElementRef="validation">
+        <dc:Bounds height="80" width="180" x="160" y="100" />
+      </dmndi:DMNShape>
+    </dmndi:DMNDiagram>
+  </dmndi:DMNDI>
+</definitions>
