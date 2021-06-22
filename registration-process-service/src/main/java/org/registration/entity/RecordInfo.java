@@ -2,7 +2,7 @@ package org.registration.entity;
 
 import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
-import org.registration.model.RequestInfo;
+import org.registration.model.Record;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -17,12 +17,12 @@ public class RecordInfo {
 
     private int clientId;
 
-    private RequestInfo.StatusEnum status;
+    private Record.StatusEnum status;
 
     public RecordInfo() {
     }
 
-    public RecordInfo(int id, int clientId, RequestInfo.StatusEnum status) {
+    public RecordInfo(int id, int clientId, Record.StatusEnum status) {
         this.id = id;
         this.clientId = clientId;
         this.status = status;
@@ -45,7 +45,7 @@ public class RecordInfo {
         return clientId;
     }
 
-    public RequestInfo.StatusEnum getStatus() {
+    public Record.StatusEnum getStatus() {
         return status;
     }
 }
