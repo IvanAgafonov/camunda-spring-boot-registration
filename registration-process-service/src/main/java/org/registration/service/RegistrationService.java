@@ -39,11 +39,6 @@ public class RegistrationService {
     }
 
 
-    @EventListener
-    private void processPostDeploy(PostDeployEvent event) {
-        repositoryService.createDeployment().addClasspathResource(VALIDATION_DMN_FILE).deploy();
-    }
-
     public void cancelRequest(int clientId) {
         ProcessInstance processInstance = runtimeService.createProcessInstanceQuery()
                 .processDefinitionKey(REGISTRATION_BPMN_KEY)
